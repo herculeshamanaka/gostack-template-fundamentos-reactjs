@@ -21,7 +21,7 @@ export const Container = styled.div<ContainerProps>`
         color: #fff;
         text-decoration: none;
         font-size: 16px;
-        transition: opacity 0.2s;
+        transition: all ease-out 0.2s;
 
         & + a {
           margin-left: 32px;
@@ -29,6 +29,17 @@ export const Container = styled.div<ContainerProps>`
 
         &:hover {
           opacity: 0.6;
+        }
+      }
+
+      ul {
+        display: flex;
+        list-style: none;
+
+        li {
+          & + li {
+            margin-left: 30px;
+          }
         }
       }
     }

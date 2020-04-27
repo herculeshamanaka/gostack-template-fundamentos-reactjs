@@ -210,7 +210,7 @@ describe('Dashboard', () => {
       ],
       'import.csv',
       {
-        type: 'text/csv',
+        type: 'application/vnd.ms-excel',
       },
     );
 

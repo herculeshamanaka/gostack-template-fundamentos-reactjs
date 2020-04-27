@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 
 import filesize from 'filesize';
 
+import Dropzone, { useDropzone } from 'react-dropzone';
 import Header from '../../components/Header';
 import FileList from '../../components/FileList';
 import Upload from '../../components/Upload';
@@ -23,19 +24,29 @@ const Import: React.FC = () => {
   const history = useHistory();
 
   async function handleUpload(): Promise<void> {
-    // const data = new FormData();
+    const data = new FormData();
 
     // TODO
 
     try {
-      // await api.post('/transactions/import', data);
+      uploadedFiles.forEach((file) => {
+        data.append('file', file.file);
+      });
+      await api.post('/transactions/import', data);
     } catch (err) {
-      // console.log(err.response.error);
+      console.log(err.response.error);
     }
   }
 
   function submitFile(files: File[]): void {
-    // TODO
+    files.forEach((file) => {
+      const fileToSubmit: FileProps = {
+        name: file.name,
+        readableSize: filesize(file.size),
+        file,
+      };
+      setUploadedFiles([...uploadedFiles, fileToSubmit]);
+    });
   }
 
   return (
